@@ -54,6 +54,7 @@ function FilterComponent() {
             document.getElementById('graphicStyle').disabled = false;
             document.getElementById('textCheckBox').disabled = false;
             document.getElementById('detailCheckBox').disabled = false;
+            document.getElementById('detailCheckBox').checked = false; // always start with photo gallery
             setVideoCheckBox(false);
             setDetailCheckbox(false);
         }
