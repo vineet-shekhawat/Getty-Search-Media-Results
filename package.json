@@ -3,11 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@vineetshekhawat/gettyimages-api": "^1.1.1",
     "axios": "^0.27.2",
     "cra-template": "1.2.0",
-    "@vineetshekhawat/gettyimages-api": "^1.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-photo-gallery": "^8.0.0",
     "react-scripts": "4.0.3"
   },
   "scripts": {

@@ -42,6 +42,10 @@
   background: linear-gradient(rgba(247, 205, 167, 0.2) 0%, rgba(241, 140, 82, 0.1) 100%);
   border-top-left-radius: 50% 50%;
   border-top-right-radius: 50% 50%;
+  padding-left: 100px;
+  padding-right: 100px;
+  padding-top: 50px;
+  padding-bottom: 50px;
 }
 
 .heading {
@@ -64,7 +68,7 @@
   align-items: center;
   justify-content: center;
   height: 200px;
-  margin: 50px 20px;
+  margin: 50px 0px;
   list-style: none;
   font-size: 0.9rem;
 }
@@ -92,7 +96,7 @@
   position: relative;
   background: #fff;
   width: 250px;
-  height: 275px;
+  height: 260px;
   border-radius: 0.9em;
   margin: 1em;
   overflow: hidden;
@@ -107,7 +111,7 @@
 }
 
 .card-content {
-  padding: 10px;
+  padding: 0px;
 }
 
 .edge-right {
@@ -122,3 +126,7 @@
   border-bottom-right-radius: 170px;
 }
  
+.gallery {
+  margin-left: 100px;
+  padding: 25px;
+}

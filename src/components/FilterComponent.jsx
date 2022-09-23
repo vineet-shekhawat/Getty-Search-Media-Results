@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import {gettyApiKey, gettyApiSecret, keywordForImagesWithText} from './constants';
+import Gallery from 'react-photo-gallery';
 const api = require("@vineetshekhawat/gettyimages-api");
 
 function FilterComponent() {
@@ -10,6 +11,8 @@ function FilterComponent() {
     const [textCheckBox, setTextCheckBox] = useState(false);
     const [mediaCount, setMediaCount] = useState(5);
     const [videoCheckBox, setVideoCheckBox] = useState(false);
+    const [photoList, setPhotoList] = useState([]);
+    const [detailCheckBox, setDetailCheckbox] = useState(false);
 
     function avoidTextCheckBoxStatus() {
         // Get the checkbox
@@ -22,20 +25,37 @@ function FilterComponent() {
         }
     }
 
+    function detailCheckBoxStatus() {
+        // Get the checkbox
+        var checkBox = document.getElementById("detailCheckBox");
+        // If the checkbox is checked, update state
+        if (checkBox.checked === true){
+            setDetailCheckbox(true);
+        } else {
+            setDetailCheckbox(false);
+        }
+    }
+
     function videoResultsCheckBoxStatus() {
         // Get the checkbox
         var checkBox = document.getElementById("videoCheckBox");
         // If the checkbox is checked, update state
         if (checkBox.checked === true){
             setData([]);
+            setPhotoList([]);
             document.getElementById('graphicStyle').disabled = true;
             document.getElementById('textCheckBox').disabled = true;
+            document.getElementById('detailCheckBox').disabled = true;
+            setDetailCheckbox(true);
             setVideoCheckBox(true);
         } else {
+            setPhotoList([]);
             setData([]);
             document.getElementById('graphicStyle').disabled = false;
             document.getElementById('textCheckBox').disabled = false;
+            document.getElementById('detailCheckBox').disabled = false;
             setVideoCheckBox(false);
+            setDetailCheckbox(false);
         }
     }
 
@@ -47,6 +67,7 @@ function FilterComponent() {
 
         if(searchTerm === "")
         {
+            setPhotoList([]);
             setData([]);
             console.log("empty string- nothing available");
             document.getElementById("SearchButton").disabled = false;
@@ -75,8 +96,18 @@ function FilterComponent() {
         document.getElementById("SearchButton").disabled = false;
         document.getElementById("videoCheckBox").disabled = false;
         console.log("response images", searchResponse.images);
-    }
-
+        const newPhotoList = [];
+        for(let item of searchResponse.images )
+        {
+            const imgObj = {
+                src: item.display_sizes[0].uri ?? '',
+                width: item.max_dimensions.width,
+                height: item.max_dimensions.height
+            };
+            newPhotoList.push(imgObj);
+        }
+        setPhotoList(newPhotoList);
+    }       
     return <>
         <div className="title">
             <h1 className="heading">Search Getty Images</h1>
@@ -95,11 +126,18 @@ function FilterComponent() {
                 <input type="checkbox" id="textCheckBox" onClick={()=>avoidTextCheckBoxStatus()}/>
                 <label style= {{marginRight: '20px'}} id="textCheckBox"> Without text</label>
                 <input type="checkbox" id="videoCheckBox" onClick={()=>videoResultsCheckBoxStatus()}/>
-                <label id="videoCheckBox"> Videos </label>
+                <label style= {{marginRight: '20px'}} id="videoCheckBox"> Videos </label>
+                <input type="checkbox" id="detailCheckBox" onClick={()=>detailCheckBoxStatus()}/>
+                <label id="detailCheckBox"> Show Details</label>
             </div>
             <h2>List of Media</h2>
             <span>From Getty API</span>
-            <ul className="items-unorder">
+            { !detailCheckBox && <div id="gallery">
+                <br></br>
+                <br></br>
+                <Gallery photos={photoList} />
+            </div> }
+            { detailCheckBox && <ul className="items-unorder">
                 {data
                     // .filter((data) => data.title.toLowerCase().includes(input))
                     .map((items)=> {
@@ -111,10 +149,10 @@ function FilterComponent() {
                                         <h3>{items.id}</h3>
                                         {
                                             videoCheckBox
-                                            ?   <video width="175px" height= "175px" controls="controls" transform= "translate(-50%)">
+                                            ?   <video width="200px" height= "175px" controls="controls" transform= "translate(-50%)">
                                                     <source src= {items.display_sizes[0].uri} type="video/mp4"/>
                                                 </video>
-                                            :   <img src={ items.display_sizes[0].uri } alt={'hi'} width="175px" height="175px"></img>
+                                            :   <img src={ items.display_sizes[0].uri } alt={'hi'} width="200px" height="175px"></img>
                                         }
                                         <span className="sub-title">
                                             <a  target="_blank" rel="noopener noreferrer" href={items.display_sizes[0].uri}>MediaLink</a>
@@ -124,10 +162,11 @@ function FilterComponent() {
                                 </div>
                             </li>  
                         </>
-                    );
+                    )
                 })}
             </ul> 
+            }
         </div>
-    </>;
+    </>
 }
 export default FilterComponent;
