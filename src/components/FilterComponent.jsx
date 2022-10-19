@@ -25,6 +25,25 @@ function FilterComponent() {
         }
     }
 
+    const enterPressed = () => {
+        console.log('pressed Enter ✅');
+        document.getElementById('SearchButton').click();
+      };
+
+    React.useEffect(() => {
+        const keyDownHandler = event => {    
+          if (event.key === 'Enter') {
+            event.preventDefault();
+            enterPressed();
+          }
+        };
+        document.addEventListener('keydown', keyDownHandler);  
+        return () => {
+          document.removeEventListener('keydown', keyDownHandler);
+        };
+      // eslint-disable-next-line react-hooks/exhaustive-deps
+      }, []);
+
     function detailCheckBoxStatus() {
         // Get the checkbox
         var checkBox = document.getElementById("detailCheckBox");
@@ -82,7 +101,6 @@ function FilterComponent() {
             const searchResponse = await searchVideosQuery.execute(); //fetch response
             setData(searchResponse.videos);
             console.log("response video", searchResponse.videos);
-            console.log("no videos available");
             document.getElementById("SearchButton").disabled = false;
             document.getElementById("videoCheckBox").disabled = false;
             return;
@@ -132,7 +150,7 @@ function FilterComponent() {
                 <label id="detailCheckBox"> Show Details</label>
             </div>
             <h2>List of Media</h2>
-            <span>From Getty API</span>
+            <span>For best Results From Getty API: Use style as Photography and Without Text</span>
             { !detailCheckBox && <div id="gallery">
                 <br></br>
                 <br></br>
