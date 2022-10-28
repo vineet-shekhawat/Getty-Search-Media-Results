@@ -2,10 +2,12 @@ import React, { useState } from "react";
 import {gettyApiKey, gettyApiSecret, keywordForImagesWithText} from './constants';
 import Gallery from 'react-photo-gallery';
 const api = require("@vineetshekhawat/gettyimages-api");
+var posTagger = require( 'wink-pos-tagger' );
 
 function FilterComponent() {
 
     const [data, setData]  = useState([]);
+    const [taggers,SetTaggers] = useState(false);
     const [searchTerm,setSearchTerm] = useState("");
     const [style,setStyle] = useState("");
     const [textCheckBox, setTextCheckBox] = useState(false);
@@ -55,6 +57,17 @@ function FilterComponent() {
         }
     }
 
+    function filteredQuery() {
+        // Get the checkbox
+        var checkBox = document.getElementById("filterQuery");
+        // If the checkbox is checked, update state
+        if (checkBox.checked === true){
+            SetTaggers(true);
+        } else {
+            SetTaggers(false);
+        }
+    }
+
     function videoResultsCheckBoxStatus() {
         // Get the checkbox
         var checkBox = document.getElementById("videoCheckBox");
@@ -94,10 +107,29 @@ function FilterComponent() {
             return;
         }
 
+        //FetchQueryFromSearchTerm(); //national cookie day
+        var sq = "";
+        if(taggers)
+        {
+            var tagger = posTagger();
+            var tokens = tagger.tagSentence( searchTerm );
+            tokens = tokens.filter((token) => token.tag === "word");
+            tokens.map((token) => {
+                if (["NN", "NNS", "NNP", "NNPS"].includes(token.pos)) { //, "JJ", "JJR", "JJS"
+                    if(sq === "") sq = token.value;
+                    else sq = sq.concat(" ",token.value);
+                    return sq;
+                }
+            });
+        }
+
+        const query = sq ==="" ? searchTerm : sq;
+        //console.log('search term: '+ searchTerm, "post processing: ", query);
+
         if(videoCheckBox)
         {
             var searchVideosQuery = client.searchvideos().withPage(1).withPageSize(mediaCount); // add count of images
-            searchVideosQuery.withPhrase(searchTerm); // add search term
+            searchVideosQuery.withPhrase(query); // add search term
             const searchResponse = await searchVideosQuery.execute(); //fetch response
             setData(searchResponse.videos);
             console.log("response video", searchResponse.videos);
@@ -109,7 +141,7 @@ function FilterComponent() {
         var searchQuery = client.searchimagescreative().withPage(1).withPageSize(mediaCount); // add count of images
         if(textCheckBox) searchQuery.withExcludeKeywordId(keywordForImagesWithText); // exclude images with text
         if(style !== "" && style !== "all") searchQuery.withGraphicalStyle(style); // add graphic style if any
-        searchQuery.withSafeSearch(true).withPhrase(searchTerm); // add search term
+        searchQuery.withSafeSearch(true).withPhrase(query); // add search term
         const searchResponse = await searchQuery.execute(); //fetch response
         setData(searchResponse.images);
         document.getElementById("SearchButton").disabled = false;
@@ -147,7 +179,9 @@ function FilterComponent() {
                 <input type="checkbox" id="videoCheckBox" onClick={()=>videoResultsCheckBoxStatus()}/>
                 <label style= {{marginRight: '20px'}} id="videoCheckBox"> Videos </label>
                 <input type="checkbox" id="detailCheckBox" onClick={()=>detailCheckBoxStatus()}/>
-                <label id="detailCheckBox"> Show Details</label>
+                <label style= {{marginRight: '20px'}} id="detailCheckBox"> Show Details</label>
+                <input type="checkbox" id="filterQuery" onClick={()=>filteredQuery()}/>
+                <label id="filterQuery"> Query Processor</label>
             </div>
             <h2>List of Media</h2>
             <span>For best Results From Getty API: Use style as Photography and Without Text</span>

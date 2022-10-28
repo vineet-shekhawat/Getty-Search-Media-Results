@@ -1921,7 +1921,7 @@
 
 "@vineetshekhawat/gettyimages-api@^1.1.1":
   version "1.1.1"
-  resolved "https://registry.yarnpkg.com/@vineetshekhawat/gettyimages-api/-/gettyimages-api-1.1.1.tgz#0dbd565b565f96dcd3028b40db7ecfe0962e5d37"
+  resolved "https://registry.npmjs.org/@vineetshekhawat/gettyimages-api/-/gettyimages-api-1.1.1.tgz"
   integrity sha512-d/C1+k/LUW25rRtj35a77SXLscQ9BiPldLqYqr3OwH2sSReHqxAVYL6gwwWfiJiZvM4W8MI2VIphfA9hw3FUwg==
 
 "@webassemblyjs/ast@1.9.0":
@@ -4195,7 +4195,7 @@ emoji-regex@^8.0.0:
   resolved "https://registry.npmjs.org/emoji-regex/-/emoji-regex-8.0.0.tgz"
   integrity sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==
 
-emoji-regex@^9.2.2:
+emoji-regex@^9.0.0, emoji-regex@^9.2.2:
   version "9.2.2"
   resolved "https://registry.npmjs.org/emoji-regex/-/emoji-regex-9.2.2.tgz"
   integrity sha512-L18DaJsXSUk2+42pv8mLs5jJT2hqFkFE4j21wOmgbUqsZ2hL72NsUU785g9RXgo3s0ZNgVl42TiHp3ZtOv/Vyg==
@@ -7274,9 +7274,9 @@ multicast-dns@^6.0.1:
     thunky "^1.0.2"
 
 nan@^2.12.1:
-  version "2.16.0"
-  resolved "https://registry.yarnpkg.com/nan/-/nan-2.16.0.tgz#664f43e45460fb98faf00edca0bb0d7b8dce7916"
-  integrity sha512-UdAqHyFngu7TfQKsCBgAA6pWDkT8MAO7d0jyOecVhN5354xbLqdn8mV9Tat9gepAupm0bt2DbeaSC8vS52MuFA==
+  version "2.17.0"
+  resolved "https://registry.yarnpkg.com/nan/-/nan-2.17.0.tgz#c0150a2368a182f033e9aa5195ec76ea41a199cb"
+  integrity sha512-2ZTgtl0nJsO0KQCjEpxcIr5D+Yv90plTitZt9JBfQvVJDS5seMl3FOvsh3+9CoYWXf/1l5OaZzzF6nDm4cagaQ==
 
 nanoid@^3.3.4:
   version "3.3.4"
@@ -8713,7 +8713,7 @@ prop-types@^15.8.1:
 
 prop-types@~15.7.2:
   version "15.7.2"
-  resolved "https://registry.yarnpkg.com/prop-types/-/prop-types-15.7.2.tgz#52c41e75b8c87e72b9d9360e0206b99dcbffa6c5"
+  resolved "https://registry.npmjs.org/prop-types/-/prop-types-15.7.2.tgz"
   integrity sha512-8QQikdH7//R2vurIJSutZ1smHYTcLpRWEOlHnzcWHmBYrOGUysKwSsrC89BCiFj3CbrfJ/nXFdJepOVrY1GCHQ==
   dependencies:
     loose-envify "^1.4.0"
@@ -8929,7 +8929,7 @@ react-error-overlay@^6.0.9:
 
 react-is@^16.13.1, react-is@^16.8.1:
   version "16.13.1"
-  resolved "https://registry.yarnpkg.com/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
+  resolved "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   integrity sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ==
 
 react-is@^17.0.1:
@@ -8939,7 +8939,7 @@ react-is@^17.0.1:
 
 react-photo-gallery@^8.0.0:
   version "8.0.0"
-  resolved "https://registry.yarnpkg.com/react-photo-gallery/-/react-photo-gallery-8.0.0.tgz#04ff9f902a2342660e63e6817b4f010488db02b8"
+  resolved "https://registry.npmjs.org/react-photo-gallery/-/react-photo-gallery-8.0.0.tgz"
   integrity sha512-Y9458yygEB9cIZAWlBWuenlR+ghin1RopmmU3Vice8BeJl0Se7hzfxGDq8W1armB/ic/kphGg+G1jq5fOEd0sw==
   dependencies:
     prop-types "~15.7.2"
@@ -9220,7 +9220,7 @@ requires-port@^1.0.0:
 
 resize-observer-polyfill@^1.5.0:
   version "1.5.1"
-  resolved "https://registry.yarnpkg.com/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz#0e9020dd3d21024458d4ebd27e23e40269810464"
+  resolved "https://registry.npmjs.org/resize-observer-polyfill/-/resize-observer-polyfill-1.5.1.tgz"
   integrity sha512-LwZrotdHOo12nQuZlHEmtuXdqGoOD0OhaxopaNFxWzInpEgaLWoVuAMbTzixuosCx2nEG58ngzW3vxdWoxIgdg==
 
 resolve-cwd@^2.0.0:
@@ -11020,6 +11020,47 @@ which@^2.0.1, which@^2.0.2:
   integrity sha512-BLI3Tl1TW3Pvl70l3yq3Y64i+awpwXqsGBYWkkqMtnbXgrMD+yj7rhW0kuEDxzJaYXGjEW5ogapKNMEKNMjibA==
   dependencies:
     isexe "^2.0.0"
+
+wink-helpers@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.npmjs.org/wink-helpers/-/wink-helpers-2.0.0.tgz"
+  integrity sha512-I/ZzXrHcNRXuoeFJmp2vMVqDI6UCK02Tds1WP4kSGAmx520gjL1BObVzF7d2ps24tyHIly9ngdB2jwhlFUjPvg==
+
+wink-lemmatizer@^3.0.1:
+  version "3.0.2"
+  resolved "https://registry.npmjs.org/wink-lemmatizer/-/wink-lemmatizer-3.0.2.tgz"
+  integrity sha512-0G572wdcujnRfpjSKs2lDXjA2+8APzkQu+gsREzzOjqg39C1ACE912veMwx2onlbYfUifsZRVaLZUOXjsHFVzA==
+  dependencies:
+    wink-lexicon "^2.1.2"
+    wink-porter2-stemmer "^2.0.0"
+
+wink-lexicon@^2.1.1, wink-lexicon@^2.1.2:
+  version "2.1.2"
+  resolved "https://registry.npmjs.org/wink-lexicon/-/wink-lexicon-2.1.2.tgz"
+  integrity sha512-LUIVIKNIURMHN38leZXWP+ZE0b1jWUdGDHfgV6kmPSHy2AqwHS/n8xGADRsfJxJamLb6BwQY713/w2XnWYk/HQ==
+
+wink-porter2-stemmer@^2.0.0:
+  version "2.0.1"
+  resolved "https://registry.npmjs.org/wink-porter2-stemmer/-/wink-porter2-stemmer-2.0.1.tgz"
+  integrity sha512-0g+RkkqhRXFmSpJQStVXW5N/WsshWpJXsoDRW7DwVkGI2uDT6IBCoq3xdH5p6IHLaC6ygk7RWUsUx4alKxoagQ==
+
+wink-pos-tagger@^2.2.2:
+  version "2.2.2"
+  resolved "https://registry.npmjs.org/wink-pos-tagger/-/wink-pos-tagger-2.2.2.tgz"
+  integrity sha512-+bhkwqwwChqWR75ksFKVJZQagwu404UmnvFjxr+OWZ02/ZJAv19N/iqDpMeYRQRxatk5N+W9pXIKEDJsVrzGyw==
+  dependencies:
+    wink-helpers "^2.0.0"
+    wink-lemmatizer "^3.0.1"
+    wink-lexicon "^2.1.1"
+    wink-porter2-stemmer "^2.0.0"
+    wink-tokenizer "^5.2.1"
+
+wink-tokenizer@^5.2.1:
+  version "5.3.0"
+  resolved "https://registry.npmjs.org/wink-tokenizer/-/wink-tokenizer-5.3.0.tgz"
+  integrity sha512-O/yAw0g3FmSgeeQuYAJJfP7fVPB4A6ay0018qASh79aWmIOyPYy4j4r9EQT8xBjicja6lCLvgRVAybmEBaATQA==
+  dependencies:
+    emoji-regex "^9.0.0"
 
 word-wrap@^1.2.3, word-wrap@~1.2.3:
   version "1.2.3"
