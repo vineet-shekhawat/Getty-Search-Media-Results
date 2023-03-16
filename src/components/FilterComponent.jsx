@@ -141,7 +141,7 @@ function FilterComponent() {
         var searchQuery = client.searchimagescreative().withPage(1).withPageSize(mediaCount); // add count of images
         if(textCheckBox) searchQuery.withExcludeKeywordId(keywordForImagesWithText); // exclude images with text
         if(style !== "" && style !== "all") searchQuery.withGraphicalStyle(style); // add graphic style if any
-        searchQuery.withSafeSearch(true).withPhrase(query); // add search term
+        searchQuery.withSafeSearch(true).withPhrase(query).withSortOrder("best_match"); // add search term
         const searchResponse = await searchQuery.execute(); //fetch response
         setData(searchResponse.images);
         document.getElementById("SearchButton").disabled = false;
