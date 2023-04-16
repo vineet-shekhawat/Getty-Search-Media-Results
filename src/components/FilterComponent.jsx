@@ -10,8 +10,9 @@ function FilterComponent() {
     const [taggers,SetTaggers] = useState(false);
     const [searchTerm,setSearchTerm] = useState("");
     const [style,setStyle] = useState("");
+    const [color,setColor] = useState("");
     const [textCheckBox, setTextCheckBox] = useState(false);
-    const [mediaCount, setMediaCount] = useState(5);
+    const [mediaCount, setMediaCount] = useState(20);
     const [videoCheckBox, setVideoCheckBox] = useState(false);
     const [photoList, setPhotoList] = useState([]);
     const [detailCheckBox, setDetailCheckbox] = useState(false);
@@ -141,7 +142,7 @@ function FilterComponent() {
         var searchQuery = client.searchimagescreative().withPage(1).withPageSize(mediaCount); // add count of images
         if(textCheckBox) searchQuery.withExcludeKeywordId(keywordForImagesWithText); // exclude images with text
         if(style !== "" && style !== "all") searchQuery.withGraphicalStyle(style); // add graphic style if any
-        searchQuery.withSafeSearch(true).withPhrase(query).withSortOrder("best_match"); // add search term
+        searchQuery.withSafeSearch(true).withPhrase(query).withSortOrder("best_match").withColor(color); // add search term
         const searchResponse = await searchQuery.execute(); //fetch response
         setData(searchResponse.images);
         document.getElementById("SearchButton").disabled = false;
@@ -172,12 +173,13 @@ function FilterComponent() {
                     <option value="illustration">illustration</option>
                     <option value="vector">vector</option>
                 </select>
-                <input style= {{marginRight: '10px', width: '25px'}} type="text" name="textfield" id="textfield" placeholder="5" onChange={(e)=> setMediaCount(e.target.value)} />
+                <input style= {{marginRight: '10px', width: '25px'}} type="text" name="textfield" id="textfield" placeholder="20" onChange={(e)=> setMediaCount(e.target.value)} />
                 <input style= {{marginRight: '10px'}} name="" type="button" id= "SearchButton" value="Search" onClick={()=> FetchGettyImages()}></input>
                 <input type="checkbox" id="textCheckBox" onClick={()=>avoidTextCheckBoxStatus()}/>
                 <label style= {{marginRight: '20px'}} id="textCheckBox"> Without text</label>
                 <input type="checkbox" id="videoCheckBox" onClick={()=>videoResultsCheckBoxStatus()}/>
                 <label style= {{marginRight: '20px'}} id="videoCheckBox"> Videos </label>
+                <input style= {{marginRight: '10px'}} type="text" name="textfield" id="textfield" placeholder="Enter test color hexCode" onChange={(e)=> setColor(e.target.value)} />
                 <input type="checkbox" id="detailCheckBox" onClick={()=>detailCheckBoxStatus()}/>
                 <label style= {{marginRight: '20px'}} id="detailCheckBox"> Show Details</label>
                 <input type="checkbox" id="filterQuery" onClick={()=>filteredQuery()}/>
